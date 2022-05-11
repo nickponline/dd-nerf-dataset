@@ -1,7 +1,7 @@
-DroneDeploy NerF Dataset
+DroneDeploy NeRF Dataset
 ===
 
-DroneDeploy NerF Dataset ("DNF") contains a number of real world scenes captured by drone that include high resolution images, camera poses (intrinsics and extrinsics) and dense color point clouds. It is intended for computer vision research.
+DroneDeploy NeRF Dataset ("DNF") contains a number of real world scenes captured by drone that include high resolution images, camera poses (intrinsics and extrinsics) and dense color point clouds. It is intended for computer vision research.
 
 Information
 ---
@@ -63,7 +63,7 @@ instant-ngp$ ./build/testbed --scene ./datasets/house1/cameras.json
 ```bibtex
 @misc{Pilkington2022,
   author = {Nicholas Pilkington},
-  title = {DroneDeploy NerF Dataset},
+  title = {DroneDeploy NeRF Dataset},
   year = {2022},
   month = may
   publisher = {GitHub},
