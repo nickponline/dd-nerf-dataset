@@ -3,21 +3,15 @@ from collections import namedtuple
 import pymap3d
 from xml.etree import ElementTree as ET
 import os
-
-LLA = namedtuple('LLA', ['long', 'lat', 'alt'])
-XY = namedtuple('XY', ['x', 'y'])
-RPY = namedtuple('RPY', ['r', 'p', 'y'])
-Ref = namedtuple('Reference', ('lla', 'rpy', 'enabled'))
-Covariance = namedtuple('Covariance', ('labels', 'M'))
-
 import random
-import util
+import pymap3d
 import cv2
 import open3d as o3d
 import numpy as np
 import click
 import json
 from pathlib import Path
+
 
 def rotmat(a, b):
     a, b = a / np.linalg.norm(a), b / np.linalg.norm(b)
@@ -75,6 +69,18 @@ def undistort(image, camera):
     undistorted = cv2.undistort(image, camera.sensor.camera.K, coefficients)
     return undistorted
 
+
+
+# some simple class like objects
+LLA = namedtuple('LLA', ['long', 'lat', 'alt'])
+XY = namedtuple('XY', ['x', 'y'])
+XYZ = namedtuple('XYZ', ['x', 'y', 'z'])
+RPY = namedtuple('RPY', ['r', 'p', 'y'])
+Ref = namedtuple('Reference', ('lla', 'rpy', 'enabled'))
+Marker = namedtuple('Marker', ('pixel', 'camera'))
+Covariance = namedtuple('Covariance', ('labels', 'M'))
+
+
 class Transform(object):
     """ Object for storing ECEF to ENU transform"""
     def __init__(self, origin, R, T, s):
@@ -121,6 +127,28 @@ class Transform(object):
         y = y.tolist()
         z = z.tolist()
         return [x, y, z]
+
+class GCP(object):
+    """ Object for storing GCP info """
+    def __init__(self, _id, label, ref, est, cameras):
+        """
+        Args:
+            _id (int): GCP index
+            label (str): GCP label
+            ref (tuple): triple of reference longitude, latitude, altitude
+            est (tuple): triple of estimated longitude, latitude, altitude
+            cameras (list): list of Marker objects containing pixels and images
+        """
+        self.id = _id
+        self.label = label
+        self.reference = LLA(*ref)
+        self.estimated = None if est is None else LLA(*est)
+        self.cameras = cameras
+
+    def is_checkpoint(self):
+        """ returns True if GCP is a checkpoint """
+        return 'checkpoint' in self.label.lower()
+
 
 class CamerasXML(object):
     """ Parses and stores the data in the cameras XML """
@@ -468,6 +496,46 @@ class CamerasXML(object):
 
         self.gcps = markers
 
+
+def read_points_as_numpy(filename):
+    with laspy.file.File(filename, mode='r') as f:
+        data = np.vstack([
+            f.x,
+            f.y,
+            f.z,
+            f.red   / 256,
+            f.green / 256,
+            f.blue  / 256,
+        ])
+
+        return data.T
+
+def read_numpy(filename):
+    """ Load and return a numpy.array from file """
+    points = np.load(filename)
+    try:
+        points = points[ points[:,2].argsort() ]
+    except:
+        print("Could not sort")
+    return points
+
+def read_pointcloud(camerasfile, filename, dont_convert=False):
+    """ Convert .las in wgs84 to .npy in enu """
+
+    points = read_points_as_numpy(filename)
+    cameras = CamerasXML().read(camerasfile)
+
+    # Use the transform from the camera.xml to bring points into camera coordinate system
+    ecef = pymap3d.geodetic2ecef(points[:, 1], points[:, 0], points[:, 2])
+    ecef = np.vstack(ecef).T
+    Rinv = cameras.transform.Rinv
+    Sinv = cameras.transform.Sinv
+    T = cameras.transform.T.T
+
+    points[:, :3] = Rinv.dot(Sinv).dot( (ecef - T).T ).T
+
+    return points
+
 class Projector(object):
     def __init__(self, sensor, pose):
         self.sensor = sensor
@@ -500,6 +568,8 @@ class Projector(object):
         """ return the up vector """
         return self.pose[0:3, 0].reshape(3).tolist()
 
+
+
     def pose_from_RC(self, C, Rc):
         C = np.array(C)
         R = Rc.T
@@ -508,6 +578,8 @@ class Projector(object):
             np.hstack([R, t.reshape(3, 1)]),
             np.array([0, 0, 0, 1]),
         ])
+
+
 
 class Camera(object):
     def __init__(self, name, K, size):
@@ -522,6 +594,7 @@ class Camera(object):
 
     def i2cp(self, x):
         return x
+
 
 class PinholeCamera(Camera):
     def __init__(self, K, size):
