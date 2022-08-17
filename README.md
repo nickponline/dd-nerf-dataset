@@ -64,7 +64,7 @@ or
 ```sh
 python scripts/run.py --mode="nerf" --scene="house1/cameras.json" --screenshot_transforms="house1/cameras.json"  --width="1216" --height="912" --screenshot_dir="house1/output" --near_distance="0"  --screenshot_spp="16"
 ```
-![script](/imgs/scipt.jpg?raw=true "script")
+![script](/imgs/script.jpg?raw=true "script")
 
 
 
