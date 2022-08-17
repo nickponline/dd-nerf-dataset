@@ -12,11 +12,11 @@ Information
 | house2 | ![house2](/imgs/house2.png?raw=true "house2")  |     952 |  25M | 8.6GB | [Pointcloud preview](https://drive.google.com/file/d/1UotQdkuMQU2LXC5IGLy8QVWw4qmLDX7c/view?usp=sharing)
 | house3 | ![house3](/imgs/house3.png?raw=true "house3")  |     182 |  5M | 1.4GB | [Pointcloud preview](https://drive.google.com/file/d/1Y8U9u0F7uU1Yy35b_4qjNut5r12gDYeh/view?usp=sharing)
 | house4 | ![house4](/imgs/house4.png?raw=true "house4")  |     367 |  10M | 5.2GB | [Pointcloud preview](https://drive.google.com/file/d/1YjJTNUABCzdZEepC1NqWzvqt6HrxF8vp/view?usp=sharing)
-| ruins1 | ![ruins1](/imgs/ruins1.png?raw=true "ruins1") |     391 |  6M | coming soon | [Pointcloud preview](https://drive.google.com/file/d/1Oy5otafHEyTs5L73I2btxk2P-rmuh37n/view?usp=sharing)
-| ruins2 | ![ruins2](/imgs/ruins2.png?raw=true "ruins2") |     1174 |  56M | coming soon | [Pointcloud preview](https://drive.google.com/file/d/1Awi2eG69Iyggzn0jCDqg45nV41KwO5ZB/view?usp=sharing)
-| ruins3 | ![ruins3](/imgs/ruins3.png?raw=true "ruins3") |     539 |  12M | coming soon | [Pointcloud preview](https://drive.google.com/file/d/1BMPBVFeCn4HbksKtB1BPfEzsRjQx_GRE/view?usp=sharing)
-| tower1 | ![tower1](/imgs/tower1.png?raw=true "tower1") |     783 |  42M | coming soon | [Pointcloud preview](https://drive.google.com/file/d/1d4V0_MqoYebqlSndAnjKeyoKSUbZJs97/view?usp=sharing)
-| tower2 | ![tower2](/imgs/tower2.png?raw=true "tower2") |     684 |  16M | coming soon | [Pointcloud preview](https://drive.google.com/file/d/1mzU9sGT5unzV2Pd9rfSkicS-O181pt2k/view?usp=sharing)
+| ruins1 | ![ruins1](/imgs/ruins1.png?raw=true "ruins1") |     391 |  6M | 3.1GB | [Pointcloud preview](https://drive.google.com/file/d/1Oy5otafHEyTs5L73I2btxk2P-rmuh37n/view?usp=sharing)
+| ruins2 | ![ruins2](/imgs/ruins2.png?raw=true "ruins2") |     1174 |  56M | 9.3GB | [Pointcloud preview](https://drive.google.com/file/d/1Awi2eG69Iyggzn0jCDqg45nV41KwO5ZB/view?usp=sharing)
+| ruins3 | ![ruins3](/imgs/ruins3.png?raw=true "ruins3") |     539 |  12M | 4.4GB | [Pointcloud preview](https://drive.google.com/file/d/1BMPBVFeCn4HbksKtB1BPfEzsRjQx_GRE/view?usp=sharing)
+| tower1 | ![tower1](/imgs/tower1.png?raw=true "tower1") |     783 |  42M | 6.1GB | [Pointcloud preview](https://drive.google.com/file/d/1d4V0_MqoYebqlSndAnjKeyoKSUbZJs97/view?usp=sharing)
+| tower2 | ![tower2](/imgs/tower2.png?raw=true "tower2") |     684 |  16M | 1.3GB | [Pointcloud preview](https://drive.google.com/file/d/1mzU9sGT5unzV2Pd9rfSkicS-O181pt2k/view?usp=sharing)
 | pipes1 | ![pipes1](/imgs/pipes1.png?raw=true "pipes1") |     98 |  7M | coming soon | [Pointcloud preview](https://drive.google.com/file/d/1Zme6vZsdaQcncvHxKa-y-n-C2APTDUrz/view?usp=sharing)
 
 
